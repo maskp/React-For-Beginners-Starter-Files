@@ -11,6 +11,7 @@ class App extends React.Component {
 
     this.addFish = this.addFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
+    this.addToOrder = this.addToOrder.bind(this);
 
     // getinitialState
     this.state = {
@@ -34,6 +35,16 @@ class App extends React.Component {
       fishes: sampleFishes
     });
   }
+  addToOrder(key){
+    //takea copy of state
+    const order = {...this.state.order};
+    //spread eagle ?? idk what this means
+    order[key] = order[key]+1 || 1;
+    //tutorial in ff mode
+    //or mode saves his day 
+    //update state next
+    this.setState({order})//string intrpolation
+  }
 
   render() {
     return (
@@ -44,7 +55,7 @@ class App extends React.Component {
             {
               Object
                 .keys(this.state.fishes)
-                .map(key => <Fish key={key} details={this.state.fishes[key]} />)
+                .map(key => <Fish key={key} details={this.state.fishes[key]} index={key} addToOrder={this.addToOrder} />)
             }
           </ul>
         </div>
