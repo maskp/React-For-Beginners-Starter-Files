@@ -10,11 +10,12 @@ class App extends React.Component {
   constructor() {
     super();
     //'this' can b used by local methods once the constructor method is made
-    this.addFish = this.addFish.bind(this);
+    this.addFish = this.addFish.bind(this);//takes a copy of App and bind it to 'this' of addFish 
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
 
     // getinitialState
+
     this.state = {
       fishes: {},
       order: {}
@@ -24,15 +25,44 @@ class App extends React.Component {
 //"gives us # of entry point into a component....componentwillmount allows us to sync component state to firebase state"
 //
   componentWillMount(){
+    //this runs b4 the App component is rendered
     this.ref = base.syncState(`${this.props.params.storeId}/fishes`,{context:this,state:'fishes'}) //talks in ff mode....
     //don't sync the entire db
     // 
     //it takes string that points to piece of firebase that you want to sync with ?
-  }
+    
+    const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+
+    if(localStorageRef){
+      //if exist update order state
+      this.setState({
+        order: JSON.parse(localStorageRef)
+      });
+    }
+
+
+
+
+    //we can check if there is any order in localstorage
+    //chk componentwillupdate
+
+
+
+      }
 
   
   componentWillUnmount(){//to limit the listeners when we go to another page 
     base.removeBinding(this.ref);
+  }
+//it runs whenever props or state changes. we are going to use it for orders
+ //localstorage is key value pair that cannot b nested. you can store number,strings,booleans etc
+ //localstorage.setitem
+ //localStorage.getItem
+  componentWillUpdate(nextProps,nextState){
+    localStorage.setItem(`order-${this.props.params.storeId}`,
+    JSON.stringify(nextState.order))
+    //you cannot store object inside localstorage only strings
+    //chk componentwillmount
   }
 
   addFish(fish) {
@@ -85,9 +115,10 @@ class App extends React.Component {
         </div>
         {/*passs state of fish and order not a good practice to pass the entire state*/}
         <Order fishes={this.state.fishes}
-         order={this.state.order}
-         params={this.props.params}
+              order={this.state.order}
+              params={this.props.params}
          />
+         {/*params was available in the app not in orders. so, this is how we access params in the order level. See componentWillUpdate lifehook */}
         <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
       </div>
     )
