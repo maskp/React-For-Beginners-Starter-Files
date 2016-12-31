@@ -13,7 +13,8 @@ class App extends React.Component {
     this.addFish = this.addFish.bind(this);//takes a copy of App and bind it to 'this' of addFish 
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
-     this.updateFish = this.updateFish.bind(this);
+    this.updateFish = this.updateFish.bind(this);
+    this.removeFish = this.removeFish.bind(this);
 
     // getinitialState
 
@@ -103,7 +104,7 @@ class App extends React.Component {
   }
   //method adds the order to the order state
   addToOrder(key){
-    //takes copy of state
+    //takes copy of order state
     const order = {...this.state.order};
     //spread 
     order[key] = order[key]+1 || 1;
@@ -115,6 +116,13 @@ class App extends React.Component {
   //render ul:object keys turns fishes state to an array which can then b mapped over 
   //key is the fish component which uses key index details and addtoorder as its state
   //keywebs
+  // removeFromOrder(key){
+  //   const order = {...this.state.order}
+
+  // }
+
+
+
   render() {
     return (
       <div className="catch-of-the-day">
