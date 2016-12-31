@@ -4,7 +4,7 @@ import Order from './Order';
 import Inventory from './Inventory';
 import Fish from './Fish';
 import sampleFishes from '../sample-fishes';
-
+import base from '../base';
 class App extends React.Component {
   constructor() {
     super();
@@ -18,6 +18,18 @@ class App extends React.Component {
       fishes: {},
       order: {}
     };
+  }
+//lifecycle hooks 
+//"gives us # of entry point into a component....componentwillmount allows us to sync component state to firebase state"
+  //
+  componentwillMount(){
+    this.ref = base.syncState(`${this.props.params.storeId}/fishes`,{context:this,state:'fishes'}) //talks in ff mode....
+    //don't sync the entire db
+    // 
+    //it takes string that points to piece of firebase that you want to sync with ?
+  }
+  componentwillUnmount(){//to limit the listeners when we go to another page 
+    base.removeBinding(this.ref);
   }
 
   addFish(fish) {
@@ -36,7 +48,7 @@ class App extends React.Component {
     });
   }
   addToOrder(key){
-    //takea copy of state
+    //takes copy of state
     const order = {...this.state.order};
     //spread eagle ?? idk what this means
     order[key] = order[key]+1 || 1;
