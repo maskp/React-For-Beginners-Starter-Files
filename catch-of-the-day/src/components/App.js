@@ -41,7 +41,7 @@ class App extends React.Component {
     //spread eagle ?? idk what this means
     order[key] = order[key]+1 || 1;
     //tutorial in ff mode
-    //or mode saves his day 
+     
     //update state next
     this.setState({order})//string intrpolation
   }
@@ -59,7 +59,8 @@ class App extends React.Component {
             }
           </ul>
         </div>
-        <Order />
+        {/*passs state of fish and order not a good practice to pass the entire state*/}
+        <Order fishes={this.state.fishes} order={this.state.order}/>
         <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
       </div>
     )
