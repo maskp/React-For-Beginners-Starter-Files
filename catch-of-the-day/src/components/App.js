@@ -86,6 +86,12 @@ class App extends React.Component {
     this.setState({fishes}) 
   }
 
+  removeFish(key){
+    const fishes = {...this.state.fishes};
+    fishes[key] = null;
+    this.setState({fishes})
+  }
+
 
 
   //takes the sample fishes in ~ and loads onto the fishes state
@@ -130,9 +136,10 @@ class App extends React.Component {
          {/*params was available in the app not in orders. so, this is how we access params in the order level. See componentWillUpdate lifehook */}
         <Inventory 
         addFish={this.addFish} 
-        loadSamples={this.loadSamples} 
+        loadSamples={this.loadSamples}
+        removeFish={this.removeFish} 
         fishes={this.state.fishes}
-        updateFish={this.state.updateFish}
+        updateFish={this.updateFish}
 
         />
       </div>
