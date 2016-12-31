@@ -3,7 +3,7 @@ import { formatPrice } from '../helpers';
 
 class Fish extends React.Component {
   render() {
-    const { details,index } = this.props;//es6 shortcut constructor
+    const { details,index } = this.props;//es6 shortcut for const
     // const details = this.props.details;
     // const index = this.props.index;
     const isAvailable = details.status === "available";

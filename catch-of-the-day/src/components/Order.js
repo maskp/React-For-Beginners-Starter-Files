@@ -12,7 +12,8 @@ class Order extends React.Component{
 	//seperate method for easy management
 	//adds fish key property
 	renderOrder(key){
-		const fish = this.props.fishes[key];//fish fishes fisher fishing fish fish fish fish fish fish fish fish fish fish fish fishes everywhere
+		const fish = this.props.fishes[key];
+		//fish fishes fisher fishing fishious fishosaurous fishman fisht fishtility fishical fishest fishty fishism fisholophy fishology fishbility fish-therapy 
 		//add count 
 		const count = this.props.order[key];//tells us how many they've ordered. creates fish and order prop to the current state
 		if(!fish || fish.status ==='unavailable'){

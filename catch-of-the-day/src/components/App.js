@@ -13,6 +13,7 @@ class App extends React.Component {
     this.addFish = this.addFish.bind(this);//takes a copy of App and bind it to 'this' of addFish 
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
+     this.updateFish = this.updateFish.bind(this);
 
     // getinitialState
 
@@ -79,6 +80,14 @@ class App extends React.Component {
     this.setState({ fishes });
   }
 
+  updateFish(key,updatedFish){
+    const fishes = {...this.state.fishes};
+    fishes[key] = updatedFish;
+    this.setState({fishes}) 
+  }
+
+
+
   //takes the sample fishes in ~ and loads onto the fishes state
   //when onclick 
   loadSamples() {
@@ -119,7 +128,13 @@ class App extends React.Component {
               params={this.props.params}
          />
          {/*params was available in the app not in orders. so, this is how we access params in the order level. See componentWillUpdate lifehook */}
-        <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
+        <Inventory 
+        addFish={this.addFish} 
+        loadSamples={this.loadSamples} 
+        fishes={this.state.fishes}
+        updateFish={this.state.updateFish}
+
+        />
       </div>
     )
   }
