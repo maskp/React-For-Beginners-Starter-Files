@@ -14,7 +14,7 @@ class StorePicker extends React.Component{
 	}
 
 	render(){
-		//you can't comment regulat in jsx
+		//you can't comment regular in jsx
 		return(
 			<form className="store-selector" onSubmit={(e)=>this.goToStore(e)}>
 				<h2>Please Enter a Store</h2>
