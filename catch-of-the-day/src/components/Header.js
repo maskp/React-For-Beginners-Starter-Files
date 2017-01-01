@@ -5,7 +5,7 @@ class Header extends React.Component{
 		return (
 			<header className="top">
 			<h1>
-			catch
+				catch
 			<span class="ofthe"> 
 			<span class="of">of</span> 
 			<span class="the">the</span> 
