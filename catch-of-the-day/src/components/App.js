@@ -18,11 +18,13 @@ class App extends React.Component {
 
     // getinitialState
 
-    this.state = {
+   
+  }
+
+  state = {
       fishes: {},
       order: {}
     };
-  }
 //lifecycle hooks 
 //"gives us # of entry point into a component....componentwillmount allows us to sync component state to firebase state"
 //
