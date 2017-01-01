@@ -19,3 +19,9 @@ class Header extends React.Component{
 }
 
 export default Header;
+
+
+//to inform others about data that r used,to b passes, etc
+Header.propTypes = {
+	tagline: React.PropTypes.string.isRequired
+}

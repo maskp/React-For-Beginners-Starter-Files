@@ -154,5 +154,9 @@ class App extends React.Component {
     )
   }
 }
+//declaring proptypes makes our application much more resilient to passing in wrong data or not passing in data,etc
+App.propTypes = {
+  params:React.PropTypes.object.isRequired
+}
 
 export default App;
