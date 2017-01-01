@@ -110,21 +110,23 @@ renderLogin(){
 }
 
   render() {
-  	const logout = <button onClick={() => this.logout}>Log Out</button>
+  	const logout = <button onClick={this.logout}>Log Out</button>
   	//check if users are not logged in
   	if(!this.state.uid){
   		return (<div>{this.renderLogin()}</div>)
 		}
 	//check ifthey are the owner of the current store
 	if(this.state.uid!==this.state.owner){
-			<div>
+			return (<div>
 				<p>Sorry you are not the owner of this store</p>
 			{logout}
 		</div>
+		)
 	}
     return (
       <div>
         <h2>Inventory</h2>
+        {logout}
 
         {Object.keys(this.props.fishes).map(this.renderInventory)}
         <AddFishForm addFish={this.props.addFish}/>
