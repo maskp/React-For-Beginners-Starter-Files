@@ -13,8 +13,8 @@ class App extends React.Component {
     this.addFish = this.addFish.bind(this);//takes a copy of App and bind it to 'this' of addFish 
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
-    this.updateFish = this.updateFish.bind(this);
-    this.removeFish = this.removeFish.bind(this);
+    //this.updateFish = this.updateFish.bind(this);
+   // this.removeFish = this.removeFish.bind(this);
 
     // getinitialState
 
@@ -81,13 +81,13 @@ class App extends React.Component {
     this.setState({ fishes });
   }
 
-  updateFish(key,updatedFish){
+  updateFish=(key,updatedFish) => {
     const fishes = {...this.state.fishes};
     fishes[key] = updatedFish;
     this.setState({fishes}) 
-  }
+  };
 
-  removeFish(key){
+  removeFish= (key) => {
     const fishes = {...this.state.fishes};
     fishes[key] = null;
     this.setState({fishes})
@@ -97,11 +97,11 @@ class App extends React.Component {
 
   //takes the sample fishes in ~ and loads onto the fishes state
   //when onclick 
-  loadSamples() {
+  loadSamples= () =>{
     this.setState({
       fishes: sampleFishes
     });
-  }
+  };
   //method adds the order to the order state
   addToOrder(key){
     //takes copy of order state
